@@ -12,7 +12,7 @@ function agregarPalabra(){
 
 
 function ejecutaAlerta() {   
-    alert("palabra agregada");
-
-//    setTimeout(function() {w.close();}, 2000);
+    console.log("palabra agregada");
+    document.getElementById("palabraAdd").style.opacity="100%";
+    setTimeout(function(){document.getElementById("palabraAdd").style.opacity="0%"}, 2000 );
     }

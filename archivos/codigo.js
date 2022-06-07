@@ -1,5 +1,5 @@
 
-  const abecedario = ['A','B','C','D','E','F','G','H','I','J','K','L','Ñ','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  const abecedario = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
   let palabras = ["BRASIL","URUGUAY","CHILE","PARAGUAY","ARGENTINA",
   "BOLIVIA","PERU","COLOMBIA","VENEZUELA","ECUADOR"];
@@ -41,17 +41,26 @@ let contadorPerdedor=0;
 
 
 window.onload = function(){ //esto hace que la funcion inicie cuando la pagina este totalmente cargada
-  document.onkeypress = teclas; //esto inicia la funcion teclas() y le pasa el evento como parametro
+document.onkeypress = teclas; //esto inicia la funcion teclas() y le pasa el evento como parametro
   }
 
 let teclasYaTocadas = [];
+let letrasIncorrectas = [];
 // 
 //-----comienzo de la funcion teclas
 //
     function teclas(event){
       //muestra en consola la tecla tocada //console.log(String.fromCharCode(event.charCode).toUpperCase()); //crea un caracter a partir del char code ingresado en el evento
-      teclaTocada = String.fromCharCode(event.charCode).toUpperCase();
+      
+      verificarLetra = String.fromCharCode(event.charCode).toUpperCase();
 
+      
+      if(!abecedario.includes(verificarLetra)){console.log(verificarLetra+" no es letra");}
+
+      if(abecedario.includes(verificarLetra)){console.log(verificarLetra+"...");
+
+      teclaTocada = String.fromCharCode(event.charCode).toUpperCase();
+     
 
 
         if(contadorPerdedor<6){ 
@@ -89,8 +98,15 @@ let teclasYaTocadas = [];
                 teclasYaTocadas.push(teclaTocada);
               }
           if(contadorBis<secretWord.length){   
-                if(!secretWord.includes(teclaTocada)){
+                if(!secretWord.includes(teclaTocada) && !letrasIncorrectas.includes(teclaTocada)){
                   contadorPerdedor++;
+                  letrasIncorrectas.push(teclaTocada);
+                  mostrarEquivocadas = document.createElement("div");
+                  mostrarEquivocadas.className="mostrarEquivocadas";
+                  mostrarEquivocadas.id="mostrarEquivocadas";
+                  mostrarEquivocadas.textContent="letras incorrectas ingresadas: "+letrasIncorrectas;
+                  document.getElementById("mainContainer").prepend(mostrarEquivocadas);
+
 
                             //seccion de if's para agregar partes del cuerpo a medida q aumenta el contadorPerdedor
                             if(contadorPerdedor>=1){
@@ -185,7 +201,7 @@ let teclasYaTocadas = [];
                       console.log("la cifra de contadorPerdedor es: "+contadorPerdedor+" el jugador pierde si el contador llega a 6");
 
                  }
-                } 
+                } }
                }
 
 
@@ -218,6 +234,7 @@ function buttonPlayAgain(contenedorBoton){
   botonJugarDeNuevo.textContent="jugar otra vez";
   botonJugarDeNuevo.onclick=newGameAndSettAgain;
   document.getElementById(contenedorBoton).append(botonJugarDeNuevo);
+  letrasIncorrectas = [];
 }
 
 function newGameAndSettAgain(){

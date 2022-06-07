@@ -98,3 +98,22 @@ display: block;
     margin-top: 600px;
     margin-left: 580px;
 }
+
+.palabraAdd{
+    position: absolute;
+    margin-top: 185px;
+    margin-left: 500px;
+    font-size: 2em;
+    color:rgb(5, 206, 145);
+    display:inline-block;
+    opacity: 0%;
+    background-color: #E8F0FE;
+}
+
+.mostrarEquivocadas{
+    position: absolute;
+    margin-top: 420px;
+    margin-left: 500px;
+    color:rgb(206, 62, 5);
+    background-color: #E8F0FE;
+}
